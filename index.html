@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suchit Sharma</title>
+  <meta name="description" content="Suchit Sharma, Android developer from India. TWRP device trees, kernel source and firmware tools for Xiaomi phones.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    /* Set the theme before first paint so there is no flash. */
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <nav class="topbar" aria-label="Page sections">
+    <a class="brand" href="#top" aria-label="Back to top">SS</a>
+    <ul class="navlinks">
+      <li><a href="#about" data-spy="about">About</a></li>
+      <li><a href="#focus" data-spy="focus">Focus</a></li>
+      <li><a href="#projects" data-spy="projects">Projects</a></li>
+      <li><a href="#github" data-spy="github">GitHub</a></li>
+      <li><a href="#contact" data-spy="contact">Contact</a></li>
+    </ul>
+    <button class="themebtn" id="theme-toggle" type="button" aria-label="Switch theme">
+      <span id="theme-label">Dark</span>
+    </button>
+  </nav>
+
+  <div class="wrap" id="top">
+    <header class="hero">
+      <div class="hero-head">
+        <img class="avatar" src="avatar.png" width="236" height="236" alt="Suchit Sharma's profile picture">
+        <div class="hero-title">
+          <p class="label">Android developer · Kernel and recovery</p>
+          <h1>Suchit Sharma</h1>
+        </div>
+      </div>
+      <p class="lede">Android enthusiast and developer from India. I build TWRP device trees and kernel sources for Xiaomi phones, and I like learning how electronics work.</p>
+      <div class="meta">
+        <span>github.com/suchit-7x</span>
+        <span>he/him</span>
+        <span>India</span>
+      </div>
+      <div class="devices">
+        <span class="label">Device codenames</span>
+        <button class="code" type="button" data-codename="air">air</button>
+        <button class="code" type="button" data-codename="spring">spring</button>
+        <button class="code" type="button" data-codename="angelicain">angelicain</button>
+        <span class="hint">Tap one to filter the projects</span>
+      </div>
+      <div class="actions">
+        <a class="btn" href="https://github.com/suchit-7x">View GitHub</a>
+        <a class="btn ghost" href="https://t.me/suchit_7x">Message on Telegram</a>
+      </div>
+    </header>
+
+    <section class="section" id="about" aria-labelledby="h-about">
+      <h2 id="h-about">About</h2>
+      <div class="body">
+        <p>I work close to the hardware side of Android: recovery images, kernel source and firmware. My repositories cover the Redmi 13C 5G, Redmi 13R 5G, Poco M6 5G, Redmi 15 5G, Poco M7 Plus 5G and Poco C31.</p>
+        <p>My profile lists Android 13+, Linux kernel 5.15 and reverse engineering as my areas. Outside of code I keep learning about electronics.</p>
+      </div>
+    </section>
+
+    <section class="section" id="focus" aria-labelledby="h-focus">
+      <h2 id="h-focus">Focus areas</h2>
+      <div class="body">
+        <ul class="focus">
+          <li>
+            <h3>Recovery development</h3>
+            <p>TWRP device trees for Xiaomi, Redmi and Poco phones, written in Makefile and C++.</p>
+            <button class="link" type="button" data-filter="twrp">Show recovery projects</button>
+          </li>
+          <li>
+            <h3>Kernel source</h3>
+            <p>Kernel source for the spring platform, forked from Xiaomi's open source kernel and written in C. Linux kernel 5.15.</p>
+            <button class="link" type="button" data-filter="kernel">Show kernel projects</button>
+          </li>
+          <li>
+            <h3>Firmware and reverse engineering</h3>
+            <p>A GitHub Actions workflow that dumps device firmware with the DumperX script.</p>
+            <button class="link" type="button" data-filter="firmware">Show firmware projects</button>
+          </li>
+        </ul>
+        <ul class="stack" aria-label="Tools and languages">
+          <li>Android 13+</li>
+          <li>Linux kernel 5.15</li>
+          <li>TWRP</li>
+          <li>C</li>
+          <li>C++</li>
+          <li>Makefile</li>
+          <li>GitHub Actions</li>
+          <li>Git</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="h-projects">
+      <h2 id="h-projects">Projects</h2>
+      <div class="body">
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="twrp" aria-pressed="false">TWRP</button>
+          <button class="chip" type="button" data-filter="kernel" aria-pressed="false">Kernel</button>
+          <button class="chip" type="button" data-filter="firmware" aria-pressed="false">Firmware</button>
+          <button class="chip clear" type="button" id="clear-codename" hidden>
+            Codename: <span id="codename-value"></span> ×
+          </button>
+        </div>
+        <div class="tablewrap" role="region" aria-label="Projects table" tabindex="0">
+          <table id="projects-table">
+            <thead>
+              <tr>
+                <th scope="col"><button class="sort" type="button" data-sort="name">Repository</button></th>
+                <th scope="col">Devices</th>
+                <th scope="col">Codename</th>
+                <th scope="col">Language</th>
+                <th scope="col" class="num"><button class="sort" type="button" data-sort="stars">Stars</button></th>
+                <th scope="col" class="num"><button class="sort" type="button" data-sort="forks">Forks</button></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-type="twrp" data-codename="air" data-name="twrp_device_xiaomi_air" data-stars="4" data-forks="1">
+                <td class="repo"><a href="https://github.com/suchit-7x/twrp_device_xiaomi_air">twrp_device_xiaomi_air</a><small>TWRP device tree</small></td>
+                <td>Redmi 13C 5G, Redmi 13R 5G, Poco M6 5G</td>
+                <td><span class="codename">air</span></td>
+                <td>Makefile</td>
+                <td class="num">4</td>
+                <td class="num">1</td>
+              </tr>
+              <tr data-type="kernel" data-codename="spring" data-name="kernel_xiaomi_spring" data-stars="2" data-forks="4">
+                <td class="repo"><a href="https://github.com/suchit-7x/kernel_xiaomi_spring">kernel_xiaomi_spring</a><span class="fork">fork</span><small>Kernel source</small></td>
+                <td>Redmi 15 5G, Poco M7 Plus 5G</td>
+                <td><span class="codename">spring</span></td>
+                <td>C</td>
+                <td class="num">2</td>
+                <td class="num">4</td>
+              </tr>
+              <tr data-type="twrp" data-codename="spring" data-name="twrp_device_xiaomi_spring" data-stars="2" data-forks="1">
+                <td class="repo"><a href="https://github.com/suchit-7x/twrp_device_xiaomi_spring">twrp_device_xiaomi_spring</a><span class="fork">fork</span><small>TWRP device tree</small></td>
+                <td>Redmi 15 5G, Poco M7 Plus 5G</td>
+                <td><span class="codename">spring</span></td>
+                <td>C++</td>
+                <td class="num">2</td>
+                <td class="num">1</td>
+              </tr>
+              <tr data-type="twrp" data-codename="angelicain" data-name="twrp_device_xiaomi_angelicain" data-stars="1" data-forks="0">
+                <td class="repo"><a href="https://github.com/suchit-7x/twrp_device_xiaomi_angelicain">twrp_device_xiaomi_angelicain</a><small>TWRP device tree</small></td>
+                <td>Poco C31</td>
+                <td><span class="codename">angelicain</span></td>
+                <td>Makefile</td>
+                <td class="num">1</td>
+                <td class="num">0</td>
+              </tr>
+              <tr data-type="firmware" data-codename="" data-name="firmware_dumper" data-stars="1" data-forks="1">
+                <td class="repo"><a href="https://github.com/suchit-7x/firmware_dumper">firmware_dumper</a><small>Firmware dumper action using the DumperX CLI script</small></td>
+                <td>Any device</td>
+                <td>n/a</td>
+                <td>Workflow</td>
+                <td class="num">1</td>
+                <td class="num">1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="label" id="count" aria-live="polite">Showing 5 of 5 popular repositories. 18 in total on GitHub.</p>
+      </div>
+    </section>
+
+    <section class="section" id="github" aria-labelledby="h-github">
+      <h2 id="h-github">On GitHub</h2>
+      <div class="body">
+        <dl class="facts">
+          <div><dt>Repositories</dt><dd data-count="18">18</dd></div>
+          <div><dt>Starred repos</dt><dd data-count="31">31</dd></div>
+          <div><dt>Followers</dt><dd data-count="12">12</dd></div>
+        </dl>
+        <p>Achievements on the profile: Pull Shark and Quickdraw.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="h-contact">
+      <h2 id="h-contact">Contact</h2>
+      <div class="body">
+        <dl class="contact">
+          <dt>Email</dt>
+          <dd><span id="email">gtsuchit7x@gmail.com</span><button class="copy" id="copy" type="button">Copy</button></dd>
+          <dt>Telegram</dt>
+          <dd><a href="https://t.me/suchit_7x">@suchit_7x</a></dd>
+          <dt>Releases</dt>
+          <dd><a href="https://t.me/playground_7x">t.me/playground_7x</a></dd>
+          <dt>Instagram</dt>
+          <dd><a href="https://www.instagram.com/suchit__7x_">@suchit__7x_</a></dd>
+          <dt>GitHub</dt>
+          <dd><a href="https://github.com/suchit-7x">github.com/suchit-7x</a></dd>
+        </dl>
+      </div>
+    </section>
+
+    <footer>Suchit Sharma · suchit-7x · India</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
